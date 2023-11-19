@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Login</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: 'poppins',sans-serif;
+    }
+    section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        width: 100%;
+        /*
+        background: url('https://img.rawpixel.com/private/static/images/website/2022-05/pf-s86-pm-1919_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c0a3682101f120c765bacc4d6888d6bb')no-repeat;
+        background-position: center;
+        background-size: cover;
+        */
+    }
+    .form-box{
+        position: relative;
+        width: 450px ;
+        height: 650px auto;
+        background: transparent;
+        border: 3px solid rgba(255,255,255,0.5);
+        border-radius: 20px;
+        backdrop-filter: blur(20px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+    
+    }
+    .form-box button:hover{
+        transition: transform 0.3s ease;
+        transform: scale(1.05);
+    }
+    .titlebox{
+        color: #fff;
+        font-size: 20px;
+        position: relative;
+        margin: 30px 20px;
+        width: 310px;
+
+    }
+    
+    .titlebox img{
+        justify-content: center;
+        padding-right: 60px;
+        width: 280px;
+    }
+    .message-box{
+        color: #fff;
+        font-size: 20px;
+        position: relative;  
+        margin: 20px auto;
+        width: 100%; /* three lines below : to break words that are too long to fit into css with relative classes */
+        max-width: 320px; 
+        word-wrap: break-word; 
+
+    }
+
+    h2{
+        font-size: 2em;
+        color: #fff;
+        text-align: center;
+    }
+    .inputbox{
+        position: relative;
+        margin: 30px 0;
+        width: 310px;
+        border-bottom: 2px solid #fff;
+    }
+    .inputbox label{
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        transform: translateY(-50%);
+        color: #fff;
+        font-size: 1em;
+        pointer-events: none;
+        transition: .5s;
+    }
+    input:focus ~ label,
+    input:valid ~ label{
+    top: -5px;
+    }
+    .inputbox input {
+        width: 100%;
+        height: 50px;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 1em;
+        padding:0 35px 0 5px;
+        color: #fff;
+    }
+    .inputbox ion-icon{
+        position: absolute;
+        right: 8px;
+        color: #fff;
+        font-size: 1.2em;
+        top: 20px;
+    }
+    .forget{
+        margin: -15px 0 15px ;
+        font-size: .9em;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;  
+    }
+    
+    .forget label input{
+        margin-right: 3px;
+        
+    }
+    .forget label a{
+        color: #fff;
+        text-decoration: none;
+    }
+    .forget label a:hover{
+        text-decoration: underline;
+    }
+    button{
+        width: 100%;
+        height: 40px;
+        border-radius: 40px;
+        background: #fff;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-size: 1em;
+        font-weight: 600;
+    }
+
+    .register{
+        font-size: .9em;
+        color: #fff;
+        text-align: center;
+        margin: 25px 0 10px;
+    }
+    .register p a{
+        text-decoration: none;
+        color: #fff;
+        font-weight: 600;
+    }
+    .register p a:hover{
+        text-decoration: underline;
+    }
+
+    body{
+            background: #021478; /* fallback for old browsers */
+            background: rgb(2, 20, 120);
+            background: linear-gradient(90deg, rgb(108, 130, 255) 0%, rgba(2, 20, 120) 70%);
+            font-family: "Roboto", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;      
+        }
+
+    </style>
+</head>
+<body>
+    <section>
+        <div class="titlebox">
+            <img src="{% static 'media/logo.png' %}">
+            <h1>Welcome to Online EasyGo Coop Mart!</h1>
+        </div>
+            <div class="form-box">
+                <form autocomplete="off" method="post" action="">
+                    <br>
+                    {% csrf_token %}
+                    <h2>Staff Login</h2>
+                    <div class="message-box">
+                        {% if messages %}
+                        {% for message in messages %}
+                            <p style="color: floralwhite">{{ message }}</p>
+                        {% endfor %}
+                        {% endif %}
+                        {% if error_message %}
+                            <p style="color: floralwhite" class="error">{{ error_message }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="inputbox">
+                        <input type="text" name="staffID" id="staffID" required>
+                        <label for="staffID">Staff ID:</label>
+                        <ion-icon name="person-outline"></ion-icon>
+                    </div>
+                    <div class="inputbox">
+                        <input type="password" name="password" id="password" required>
+                        <label for="password">Password:</label>
+                    </div>
+                    <button type="submit" name="login">Login</button>
+                    <br>
+                    <div class="register">
+                        <br>
+                        <p><a href="{% url 'selectLogin' %}"> << Return to Select User</a></p>
+                    </div>
+                </div>
+                </form>
+            </div>
+    </section>
+</body>
+</html>

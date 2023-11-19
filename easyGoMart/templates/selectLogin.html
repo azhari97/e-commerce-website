@@ -1,0 +1,243 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Login</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+    *{
+        margin: 0;
+        padding: 0;
+        font-family: 'poppins',sans-serif;
+    }
+    .title-section{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        width: 100%;
+        /*
+        background: url('https://img.rawpixel.com/private/static/images/website/2022-05/pf-s86-pm-1919_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c0a3682101f120c765bacc4d6888d6bb')no-repeat;
+        background-position: center;
+        background-size: cover;
+        */
+    }
+    .titlebox{
+        color: #fff;
+        font-size: 20px;
+        position: relative;
+        margin: 30px 20px;
+        width: 310px;
+
+    }
+    
+    .titlebox img{
+        justify-content: center;
+        padding-right: 60px;
+        width: 280px;
+    }
+    .message-box{
+        color: #fff;
+        font-size: 20px;
+        position: relative;  
+        margin: 20px auto;
+        width: 100%; /* three lines below : to break words that are too long to fit into css with relative classes */
+        max-width: 320px; 
+        word-wrap: break-word; 
+
+    }
+
+    h2{
+        font-size: 2em;
+        color: #fff;
+        text-align: center;
+    }
+
+    body{
+            background: #021478; /* fallback for old browsers */
+            background: rgb(2, 20, 120);
+            background: linear-gradient(90deg, rgb(108, 130, 255) 0%, rgba(2, 20, 120) 70%);
+            font-family: "Roboto", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;      
+        }
+
+/* Shop Section */
+.shop-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* to allow items to wrap to next line */
+  padding: 50px 0;
+}
+
+.shop-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  max-width: 1280px;
+  width: 100%;
+}
+
+.shop-link {
+  background-color: #fff;
+  padding: 30px;
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  white-space: nowrap;
+}
+
+.shop-link img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.shop-link h3 {
+  margin-bottom: 10px;
+}
+
+.shop-link a {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.9rem;
+  color: blue;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.shop-link:hover a {
+  color: #FFDA1C;
+  text-decoration: underline;
+}
+.manage-link {
+  color: black;
+  text-decoration: none;
+}
+
+.manage-link:hover {
+  color: blue;
+  text-decoration: none;
+}
+
+/* shop cards*/
+.product-card {
+  width: calc(10%-20px); /* Adjusted width for grid (cards placement according to screen size in rows) */
+  margin: 10px;
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+/* media query for smaller screens */
+@media (max-width: 768px) {
+  .product-card {
+    width: calc(50% - 20px); /* Two cards in a row for smaller screens */
+  }
+}
+
+/* media query for even smaller screens */
+@media (max-width: 480px) {
+  .product-card {
+    width: calc(100% - 20px); /* Full width for smallest screens */
+  }
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+}
+
+.product-img-container {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.product-img img{
+  width: 320px;
+  height: 280px; 
+  display: block; 
+  margin: 20px auto; 
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: transform 0.3s ease;
+}
+
+.product-img img:hover {
+  transform: scale(1.05);
+}
+
+.product-info {
+  padding: 20px;
+}
+
+.product-title {
+  font-size: 18px; /* Adjusted font size */
+  color: #151516;
+  font-weight: 700;
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+  justify-content: relative;
+  word-wrap: break-word; 
+
+}
+
+.product-title:hover {
+  color: #004AAD;
+}
+
+.product-description {
+  font-size: 14px; /* Adjusted font size */
+  margin-bottom: 20px;
+  width:100%; /* three lines below : to break words that are too long to fit into css with relative classes */
+  max-width: 320px; 
+  word-wrap: break-word; 
+  justify-content: relative;
+
+}
+
+</style>
+</head>
+<body>
+    <section class="shop-section">
+        <div class="titlebox">
+            <img src="{% static 'media/logo.png' %}">
+            <h1>Welcome to Online EasyGo Coop Mart! Please Select User.</h1>
+        </div>
+        <a href="{% url 'loginStaff' %}" class="manage-link">
+        <div class="product-card">
+          <div class="product-img-container">
+            <div class="product-img">
+              <img src="{% static 'media/staff.png'%}" alt="Update Profile">
+            </div>
+          </div>
+          <div class="product-info">
+            <h1 class="product-title">Staff</h1></a>
+            <p class="product-description">Press here to log in as staff</p>
+          </div>
+        </div>
+    
+        <a href="{% url 'loginCustomer' %}" class="manage-link">
+            <div class="product-card">
+              <div class="product-img-container">
+                <div class="product-img">
+                  <img src="{% static 'media/customer.png'%}" alt="Update Profile">
+                </div>
+              </div>
+              <div class="product-info">
+                <h1 class="product-title">Customer</h1></a>
+                <p class="product-description">Press here to login as customer</p>
+              </div>
+            </div>
+
+    </section>
+</body>
+</html>
